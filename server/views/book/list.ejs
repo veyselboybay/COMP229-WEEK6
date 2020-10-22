@@ -1,0 +1,70 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/main_nav.ejs %>
+  
+
+  <main class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-8">
+            <h1><%= title %></h1><br>
+
+            <% if(typeof displayName == 'string' && displayName) {%>
+            <a href="/book-list/add" class="btn btn-primary" role="button">
+            <i class="fas fa-plus-circle"></i>
+            Add a Book
+            </a>
+            <%} %>
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row-->
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Author</th>
+                    <th class="text-center">Published</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Price</th>
+                     <% if(typeof displayName == 'string' && displayName) {%>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                      <%} %>
+                </tr>
+
+                <!-- Repeatable Template Row-->
+
+                <% for(let count=0;count < BookList.length; count++)
+                {
+                    %>
+                        <tr>
+                            <td class="text-center"><%= BookList[count].name %></td>    
+                            <td class="text-center"><%= BookList[count].author %></td>    
+                            <td class="text-center"><%= BookList[count].published %></td>    
+                            <td class="text-center"><%= BookList[count].description %></td>    
+                            <td class="text-center"><%= BookList[count].price %></td>   
+                            <% if(typeof displayName == 'string' && displayName) {%>
+                            <td class="text-center">
+                                <a href="/book-list/edit/<%= BookList[count]._id %>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-pencil-alt"> Edit</i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="/book-list/delete/<%= BookList[count]._id %>" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"> Delete</i>    
+                                </a>
+                            </td> 
+                             <%} %>
+                        </tr>
+                    <%
+                }
+                %>
+            </table>
+        </div>
+    </div>
+     
+    </div>
+  </main>
+
+<% include ../partials/bottom_nav.ejs %>
+<% include ../partials/footer.ejs %>
+  
+
+
+
+
