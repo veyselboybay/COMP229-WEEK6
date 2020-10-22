@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node ./server.js"
   },
+  "engines": {
+    "node": "^12.18.3",
+    "npm": "^6.0.0"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "bootstrap": "^4.5.2",
@@ -31,5 +35,17 @@
     "@types/passport": "^1.0.4",
     "@types/passport-local": "^1.0.33",
     "@types/passport-local-mongoose": "^4.0.13"
-  }
+  },
+  "description": "a demo app for week6",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veyselboybay/COMP229-WEEK6.git"
+  },
+  "author": "Veysel boybay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/veyselboybay/COMP229-WEEK6/issues"
+  },
+  "homepage": "https://github.com/veyselboybay/COMP229-WEEK6#readme"
 }
