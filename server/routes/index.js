@@ -1,5 +1,7 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose');
+let jwt = require('jsonwebtoken');
 
 let indexController=require('../controllers/index');
 
