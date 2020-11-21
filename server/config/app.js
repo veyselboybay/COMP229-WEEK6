@@ -37,6 +37,7 @@ mongoDB.once('open',()=>
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let booksRouter = require('../routes/book');
+let ordersRouter = require('../routes/order');
 
 let app = express();
 
@@ -50,6 +51,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+
+
+app.use(cors());
 
 // setup express session
 
@@ -101,9 +105,13 @@ passport.use(strategy);
 
 
 // routing
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/book-list',booksRouter);
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/book-list',booksRouter);
+app.use('/api/orders', ordersRouter);
+app.get('*',(req,res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

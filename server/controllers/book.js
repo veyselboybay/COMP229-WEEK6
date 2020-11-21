@@ -17,15 +17,17 @@ module.exports.displayBookList = (req,res,next) =>{
         else
         {
            // console.log(BookList);
-
-           res.render('book/list', {title: 'Books',BookList: bookList,displayName: req.user ? req.user.displayName:''});
+            //1
+           //res.render('book/list', {title: 'Books',BookList: bookList,displayName: req.user ? req.user.displayName:''});
+            res.json(bookList);
         }
     });
 }
 
 module.exports.displayAddPage = (req,res,next) => {
-    res.render('book/add', {title: 'Add Book',displayName: req.user ? req.user.displayName:''});
-
+    //res.render('book/add', {title: 'Add Book',displayName: req.user ? req.user.displayName:''});
+    //2
+    res.json({success: true, msg:'Successfully Displayed Add Page'});
 }
 
 module.exports.processAddPage =(req,res,next) => {
@@ -45,7 +47,9 @@ module.exports.processAddPage =(req,res,next) => {
             res.end(err);
         }
         else{
-            res.redirect('/book-list');
+            //res.redirect('/book-list');
+            //3
+            res.json({success: true, msg:'Succesfulled added new book!'});
         }
     });
     
@@ -63,7 +67,9 @@ module.exports.displayEditPage = (req,res,next) => {
         }
         else{
             //shoe the edit view
-            res.render('book/edit',{title:'Edit Book',book: bookToEdit,displayName: req.user ? req.user.displayName:''});
+            //res.render('book/edit',{title:'Edit Book',book: bookToEdit,displayName: req.user ? req.user.displayName:''});
+            //4
+            res.json({success: true, msg:'Successfully Displayed Book to Edit', book: bookToEdit});
         }
     });
     
@@ -92,7 +98,9 @@ module.exports.processEditPage = (req,res,next) => {
         else
         {
             // refresh the book list
-            res.redirect('/book-list');
+            //res.redirect('/book-list');
+            //5
+            res.json({success: true, msg: 'Successfully Edited Book', book: updatedBook});
         }
     });
 }
@@ -100,7 +108,7 @@ module.exports.processEditPage = (req,res,next) => {
 module.exports.performDelete = (req,res,next) => {
     let id= req.params.id;
 
-    Book.remove({_id:id},(err) =>{
+    Book.deleteOne({_id:id},(err) =>{
         if(err)
         {
             console.log(err);
@@ -108,7 +116,9 @@ module.exports.performDelete = (req,res,next) => {
         }
         else
         {
-            res.redirect('/book-list');
+            //res.redirect('/book-list');
+            //6
+            res.json({success: true, msg:'Succesfully Deleted'});
         }
     });
     

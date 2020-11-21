@@ -87,8 +87,8 @@ module.exports.processLoginPage = (req,res,next) => {
             });
 
 
-            /*
-            res.json({
+            
+             return res.json({
                 success:true,
                 msg:'User Logged in Successfully!',
                 user:{
@@ -98,8 +98,8 @@ module.exports.processLoginPage = (req,res,next) => {
                     email: user.email
                 },token: authToken
             });
-            */
-            return res.redirect('/book-list');
+            
+            //return res.redirect('/book-list');
         });
     })(req,res,next);
 }
@@ -156,16 +156,19 @@ module.exports.processRegisterPage = (req,res,next) => {
 
             // redirect the user and authenticate them
 
-            //res.json({success: true,msg:'User Registered Succesfully!'});
+            return res.json({success: true,msg:'User Registered Succesfully!'});
 
+            /*
             return passport.authenticate('local')(req,res, () =>{
                 res.redirect('/book-list')
             });
+            */
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();
-    res.redirect('/');
+    //res.redirect('/');
+    res.json({success: true, msg:'User Succesfully Logged out!'});
 }
