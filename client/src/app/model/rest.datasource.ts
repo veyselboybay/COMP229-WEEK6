@@ -36,7 +36,7 @@ export class RestDataSource
     {
         this.user = new User();
         //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`
-        this.baseUrl = `https://comp229-week6.herokuapp.com/api/`
+        this.baseUrl = `https://comp229-week6.herokuapp.com/api/`;
         
     }
 
