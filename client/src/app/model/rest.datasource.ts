@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from './user.model';
 
-const PROTOCOL = 'http';
+const PROTOCOL = 'https';
 const PORT = 3000;
 
 
@@ -35,7 +35,9 @@ export class RestDataSource
                 private jwtService: JwtHelperService)
     {
         this.user = new User();
-        this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`
+        //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`
+        this.baseUrl = `https://comp229-week6.herokuapp.com/api/`
+        
     }
 
     getBooks(): Observable<Book[]>
